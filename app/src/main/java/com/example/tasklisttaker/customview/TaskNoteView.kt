@@ -28,13 +28,11 @@ class TaskNoteView @JvmOverloads constructor(
         when (state) {
             TaskNoteState.COMPLETE -> {
                 paint.flags = Paint.STRIKE_THRU_TEXT_FLAG
-                setTextColor(Color.GRAY)
                 Log.d("TAG", "setState: $text COMPLETE called")
                 postInvalidate()
             }
             TaskNoteState.INCOMPLETE -> {
                 paint.flags = 0
-                setTextColor(Color.BLACK)
                 Log.d("TAG", "setState: $text INCOMPLETE called")
             }
 
