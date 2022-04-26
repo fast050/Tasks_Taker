@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail.DetailTaskActivity">
+
+    <TextView
+        android:id="@+id/task_note_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:padding="30dp"
+        android:text="@string/demoText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/importance_task_swtich_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="task importance"
+        app:layout_constraintEnd_toStartOf="@+id/task_completed_switch_detail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_note_detail" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/task_completed_switch_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="task completation"
+        app:layout_constraintBaseline_toBaselineOf="@+id/importance_task_swtich_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/importance_task_swtich_detail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

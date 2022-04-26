@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="3"
+    android:layout_marginTop="5dp"
+    android:padding="8dp"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/task_completed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:minWidth="0dp"
+        android:layout_marginStart="8dp"
+        android:minHeight="0dp"
+        />
+    <com.example.tasklisttaker.customview.TaskNoteView
+        android:id="@+id/task_note_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_weight="2"
+        android:text="@string/demoText"/>
+
+    <ImageView
+        android:id="@+id/task_importance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_star_24"
+        android:layout_weight=".5"/>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
