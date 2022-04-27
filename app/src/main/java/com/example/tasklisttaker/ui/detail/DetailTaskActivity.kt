@@ -1,13 +1,15 @@
 package com.example.tasklisttaker.ui.detail
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.tasklisttaker.R
 import com.example.tasklisttaker.application.TasksTakerApplication
 import com.example.tasklisttaker.data.model.Task
@@ -18,8 +20,8 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
 import com.google.android.material.timepicker.TimeFormat
-import java.text.DateFormat
 import java.util.*
+
 
 class DetailTaskActivity : AppCompatActivity() {
 
@@ -31,6 +33,7 @@ class DetailTaskActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityDetailTaskBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -58,7 +61,7 @@ class DetailTaskActivity : AppCompatActivity() {
             task = taskDetail
             binding.importanceTaskSwtichDetail.isChecked = taskDetail.isImportant
             binding.taskCompletedSwitchDetail.isChecked = taskDetail.isCompleted
-            binding.taskNoteDetail.text = taskDetail.note
+            binding.taskNoteDetail.setText(taskDetail.note)
         }
 
     }
@@ -70,7 +73,6 @@ class DetailTaskActivity : AppCompatActivity() {
     ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         menuInflater.inflate(R.menu.detail_menu, menu)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -82,13 +84,11 @@ class DetailTaskActivity : AppCompatActivity() {
 
         when (item.itemId) {
             R.id.delete_task_menu_item -> {
-                viewModelTaskDetail.deleteTask(task)
-                finish()
+                showDeleteAlertDialog()
                 return true
             }
             R.id.update_task_menu_item -> {
-                updateTask()
-                finish()
+                showUpdateAlertDialog()
                 return true
             }
             R.id.reminder_task_menu_item -> {
@@ -99,6 +99,40 @@ class DetailTaskActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
 
     }
+
+    private fun showDeleteAlertDialog() {
+        AlertDialog.Builder(this).setTitle("Alert")
+            .setMessage("Click OK to continue, or Cancel to stop:")
+            .setPositiveButton("OK"
+            ) { dialog, which -> // User clicked OK button.
+                viewModelTaskDetail.deleteTask(task)
+                finish()
+            }
+            .setNegativeButton("Cancel") { dialog, which -> // User cancelled the dialog.
+                Toast.makeText(
+                    applicationContext, "Task Delete Cancel",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .show()
+    }
+    private fun showUpdateAlertDialog() {
+        AlertDialog.Builder(this).setTitle("Alert")
+            .setMessage("Click OK to continue, or Cancel to stop:")
+            .setPositiveButton("OK"
+            ) { dialog, which -> // User clicked OK button.
+                updateTask()
+                finish()
+            }
+            .setNegativeButton("Cancel") { dialog, which -> // User cancelled the dialog.
+                Toast.makeText(
+                    applicationContext, "Task Update Cancel",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            .show()
+    }
+
 
     private fun updateTask() {
         task = task?.copy(

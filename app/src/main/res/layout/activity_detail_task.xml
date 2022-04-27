@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailTaskActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/task_note_detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
